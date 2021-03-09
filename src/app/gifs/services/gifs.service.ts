@@ -31,13 +31,26 @@ export class GifsService {
   public buscarGifs( 
     //              //Busca gifs.
 
-    query : String)
+    //              //Con esa asignacion nos aseguramos que 
+    //              //  siempre va a tener algun valor y es para
+    //              //  no llegue ningun valor.
+    query : String = '')
   {
-    //              //Agregamos elemento al inicio de la lista.
-    this._historial.unshift(query)
-    console.log(this._historial)
-    
+    query = query.trim().toLocaleLowerCase();
+
+    if (
+      //            //El query no existe en el historial. 
+      !this._historial.includes( query )
+      )
+      {
+        //          //Agregamos elemento al inicio de la lista.
+        this._historial.unshift(query);
+
+        //          //corto el numero de item del historial, para 
+        //          //  que sea fijo.
+        this._historial = this._historial.splice(0, 10);
+      }
+      
+    console.log(this._historial);
   }
-
-
 }

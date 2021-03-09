@@ -38,6 +38,14 @@ export class BusquedaComponent {
     console.log(this.txtBuscar);
     const valor = this.txtBuscar.nativeElement.value;
 
+    if(
+      //            //Validacion para que no deje ingresar cadenas vacias.
+      valor.trim().length === 0
+      )
+    {
+      return;
+    }
+
     console.log(valor);
 
     this.gifsService.buscarGifs(valor);

@@ -4,9 +4,12 @@
     </h3>
     <hr class="text-white">
     <div class="list-group list-reset">
+        <!-- Nota. Con el PIPE  | titlecase lo unico que hace
+            es modificar de forma visual la informacion, pero 
+            no modifica la data. -->
         <a *ngFor="let item of historial" href="#" 
             class="list-group-item list-group-item-action ">
-            {{ item }} 
+            {{ item | titlecase }} 
         </a>
     </div>
   </div>
