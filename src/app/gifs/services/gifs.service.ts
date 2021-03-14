@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ISearchGifsResponse, IGif } from '../Interface/IGifs.Interface';
 
 //                  //NOTA.NOTA.
 //                  //providedIn: 'root' esta linea es agregado cuando generamos
@@ -20,7 +21,7 @@ export class GifsService {
   private _historial  : string [] = [];
   private _apiKey     : string  = 'AKFARc5sdlat3uAh5aJoQjNsTiIX772f';
 
-  public resultados : any[] = [];
+  public resultados : IGif[] = [];
 
   //------------------------------------------------------------------------------------------
   public get historial(
@@ -65,8 +66,9 @@ export class GifsService {
 
     //              //Realizar peticiones HTTP.
     //              //Este nos ofrece muchas mas funcionalidades.
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=AKFARc5sdlat3uAh5aJoQjNsTiIX772f&q=${ query }&limit=10`)
-      .subscribe((resp : any) => {
+    //              //Aqui dise que este get a traer informacion de tipo ISearchGifsResponse.
+    this.http.get<ISearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=AKFARc5sdlat3uAh5aJoQjNsTiIX772f&q=${ query }&limit=10`)
+      .subscribe((resp : ISearchGifsResponse) => {
         console.log(resp.data);
         this.resultados = resp.data;
       });
