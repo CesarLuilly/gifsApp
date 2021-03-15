@@ -13,7 +13,7 @@ export class SidebarComponent {
     //              //Para poder utilizar el servicio necesitamos inyectarlo
     //              //  en el construtor.
 
-    private gifsService : GifsService ) 
+    private _gifsService : GifsService ) 
   { 
 
   }
@@ -24,6 +24,16 @@ export class SidebarComponent {
     
     )
   {
-    return [...this.gifsService.historial];
+    return [...this._gifsService.historial];
+  }
+
+  //------------------------------------------------------------------------------------------
+  public buscar( 
+    //              //Obtiene el historial a partir del servicio.
+    item : string
+    )
+  {
+    this._gifsService.buscarGifs(item);
+    console.log(item);
   }
 }
