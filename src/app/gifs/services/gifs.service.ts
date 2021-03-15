@@ -39,6 +39,12 @@ export class GifsService {
     private http: HttpClient
     )
   {
+    //              //Aqui es el punto importante para cargar la data del 
+    //              //  localstorage ya que el constructor de mi servicio
+    //              //  solo se va a ejecutar una ves.
+    this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
+    this.resultados = JSON.parse(localStorage.getItem('resultados')!) || [];
+
 
   }
 
@@ -62,6 +68,8 @@ export class GifsService {
       //          //corto el numero de item del historial, para 
       //          //  que sea fijo.
       this._historial = this._historial.splice(0, 10);
+
+      localStorage.setItem('historial', JSON.stringify( this._historial))
     }
 
     //              //Realizar peticiones HTTP.
@@ -71,6 +79,7 @@ export class GifsService {
       .subscribe((resp : ISearchGifsResponse) => {
         console.log(resp.data);
         this.resultados = resp.data;
+        localStorage.setItem('resultados', JSON.stringify( this.resultados))
       });
   }
 }
