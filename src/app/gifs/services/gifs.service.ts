@@ -4,7 +4,7 @@ import { ISearchGifsResponse, IGif } from '../Interface/IGifs.Interface';
 
 //                  //NOTA.NOTA.
 //                  //providedIn: 'root' esta linea es agregado cuando generamos
-//                  //  cuando generamos el servicio de ng, y aqui es algo nuevo 
+//                  //  cuando generamos el servicio de ng, y aqui es algo nuevo
 //                  //  que incluyo Angular desde la version 4.0, y con esto permite
 //                  //  que los servicio puedan estar definidos cuando se construye
 //                  //  el BUNDLE de la aplicacion, y con esto decimos que no importa
@@ -40,7 +40,7 @@ export class GifsService {
     private http: HttpClient
     )
   {
-    //              //Aqui es el punto importante para cargar la data del 
+    //              //Aqui es el punto importante para cargar la data del
     //              //  localstorage ya que el constructor de mi servicio
     //              //  solo se va a ejecutar una ves.
     this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
@@ -50,7 +50,7 @@ export class GifsService {
   }
 
   //------------------------------------------------------------------------------------------
-  public buscarGifs( 
+  public buscarGifs(
     //              //Busca gifs. 3 .. TERCERA FORMA DE CONSUMIR UN SERVICIO HTTP
     //              //                  Y ADEMAS ES A TRAVES DE UN MODULO DE ANGULAR.
 
@@ -59,14 +59,14 @@ export class GifsService {
     query = query.trim().toLocaleLowerCase();
 
     if (
-      //            //El query no existe en el historial. 
+      //            //El query no existe en el historial.
       !this._historial.includes( query )
       )
     {
       //          //Agregamos elemento al inicio de la lista.
       this._historial.unshift(query);
 
-      //          //corto el numero de item del historial, para 
+      //          //corto el numero de item del historial, para
       //          //  que sea fijo.
       this._historial = this._historial.splice(0, 10);
 
